@@ -1,0 +1,3 @@
+path_type,nb_sessions,nb_viewed_item,nb_added_cart,nb_purchased,conversion_rate_pct,view_to_cart_rate,avg_minutes_to_purchase
+via_search,15719,7924,2361,651,4.14,29.8,13.0
+direct_browse,344410,69096,12827,4197,1.22,18.56,

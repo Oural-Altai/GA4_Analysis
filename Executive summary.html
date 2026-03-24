@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Executive Summary - Google Merchandise Store Analysis</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: #1a1a1a;
+            background: #ffffff;
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 18mm;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #4285F4;
+        }
+        
+        .title-block h1 {
+            font-size: 20pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        
+        .title-block .subtitle {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #4285F4;
+        }
+        
+        .meta-block {
+            text-align: right;
+            font-size: 9pt;
+            color: #5f6368;
+        }
+        
+        .meta-block .period {
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        
+        .kpi-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 18px;
+            gap: 12px;
+        }
+        
+        .kpi-box {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 12px 14px;
+            border-left: 4px solid #4285F4;
+        }
+        
+        .kpi-box.alert {
+            border-left-color: #EA4335;
+        }
+        
+        .kpi-box.success {
+            border-left-color: #34A853;
+        }
+        
+        .kpi-value {
+            font-size: 18pt;
+            font-weight: 700;
+            color: #1a1a1a;
+        }
+        
+        .kpi-label {
+            font-size: 8pt;
+            color: #5f6368;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .section {
+            margin-bottom: 16px;
+        }
+        
+        .section-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e8eaed;
+        }
+        
+        .section-content {
+            font-size: 9.5pt;
+            color: #3c4043;
+            text-align: justify;
+        }
+        
+        .findings-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+        
+        .finding-card {
+            background: #f8f9fa;
+            padding: 12px;
+        }
+        
+        .finding-card h4 {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 6px;
+        }
+        
+        .finding-card p {
+            font-size: 9pt;
+            color: #3c4043;
+        }
+        
+        .finding-card .stat {
+            font-size: 14pt;
+            font-weight: 700;
+            color: #EA4335;
+        }
+        
+        .finding-card .stat.positive {
+            color: #34A853;
+        }
+        
+        .finding-card .stat.neutral {
+            color: #4285F4;
+        }
+        
+        .recommendations-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 9pt;
+        }
+        
+        .recommendations-table th {
+            background: #4285F4;
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 8px 10px;
+        }
+        
+        .recommendations-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid #e8eaed;
+            vertical-align: top;
+        }
+        
+        .recommendations-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .priority-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 8pt;
+            font-weight: 600;
+        }
+        
+        .priority-tag.critical {
+            background: #EA4335;
+            color: white;
+        }
+        
+        .priority-tag.high {
+            background: #FBBC04;
+            color: #1a1a1a;
+        }
+        
+        .priority-tag.medium {
+            background: #4285F4;
+            color: white;
+        }
+        
+        .impact-summary {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            color: white;
+            padding: 14px 18px;
+            margin-top: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .impact-summary .label {
+            font-size: 10pt;
+            font-weight: 600;
+        }
+        
+        .impact-summary .value {
+            font-size: 16pt;
+            font-weight: 700;
+        }
+        
+        .footer {
+            margin-top: 18px;
+            padding-top: 10px;
+            border-top: 1px solid #e8eaed;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: #5f6368;
+        }
+        
+        .footer a {
+            color: #4285F4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="title-block">
+            <h1>Executive Summary</h1>
+            <div class="subtitle">Google Merchandise Store Analysis</div>
+        </div>
+        <div class="meta-block">
+            <div class="period">Nov 2020 to Jan 2021</div>
+            <div>GA4 / BigQuery</div>
+            <div>E. Barat-Chabeauti</div>
+        </div>
+    </div>
+    
+    <div class="kpi-row">
+        <div class="kpi-box">
+            <div class="kpi-value">354,857</div>
+            <div class="kpi-label">Sessions</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-value">287,359</div>
+            <div class="kpi-label">Unique Users</div>
+        </div>
+        <div class="kpi-box alert">
+            <div class="kpi-value">1.4%</div>
+            <div class="kpi-label">Conversion Rate</div>
+        </div>
+        <div class="kpi-box">
+            <div class="kpi-value">€362K</div>
+            <div class="kpi-label">Revenue</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Situation</div>
+        <div class="section-content">
+            The Google Merchandise Store conversion rate sits at 1.4%, below the e-commerce benchmark of 2 to 3%. Analysis of 4.3 million events reveals that 98% of potential customers are lost before reaching checkout. The primary obstacle is not payment friction but product discovery. Only 1.9% of users have ever made a purchase, and retention drops below 1% by week four.
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Key Findings</div>
+        <div class="findings-grid">
+            <div class="finding-card">
+                <h4>Top Funnel Hemorrhage</h4>
+                <div class="stat">78%</div>
+                <p>of sessions never view a product. Another 80% of viewers leave without adding to cart.</p>
+            </div>
+            <div class="finding-card">
+                <h4>Search Paradox</h4>
+                <div class="stat positive">3.4×</div>
+                <p>better conversion via search, but 62% abandon at payment due to comparison behavior.</p>
+            </div>
+            <div class="finding-card">
+                <h4>Cart Abandonment</h4>
+                <div class="stat">60.7%</div>
+                <p>of carts abandoned immediately. 14% leave after seeing shipping costs.</p>
+            </div>
+            <div class="finding-card">
+                <h4>Value Concentration</h4>
+                <div class="stat neutral">22%</div>
+                <p>of users ("Need Attention" segment) generate 57% of total revenue.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <div class="section-title">Strategic Recommendations</div>
+        <table class="recommendations-table">
+            <thead>
+                <tr>
+                    <th style="width: 80px;">Priority</th>
+                    <th>Action</th>
+                    <th style="width: 100px;">Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="priority-tag critical">Critical</span></td>
+                    <td><strong>Improve Product Discovery</strong><br>UX audit, search bar prominence, personalized recommendations on landing</td>
+                    <td>+€200K to €300K</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-tag high">High</span></td>
+                    <td><strong>Reduce Cart Abandonment</strong><br>Integrate shipping into price with "Free Shipping" display, cart recovery emails at 1h/24h/72h</td>
+                    <td>+€400K to €500K</td>
+                </tr>
+                <tr>
+                    <td><span class="priority-tag medium">Medium</span></td>
+                    <td><strong>Activate CRM Segments</strong><br>Target "Need Attention" users with reactivation campaigns, maximize promo exposure over CTR</td>
+                    <td>+€200K to €350K</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <div class="impact-summary">
+        <div class="label">Total Revenue Opportunity</div>
+        <div class="value">+€650K to €1.4M annually</div>
+    </div>
+    
+    <div class="footer">
+        <div>Methodology: Funnel analysis, RFM segmentation, K-means clustering, cohort retention</div>
+        <div>ebaratchabeauti@gmail.com</div>
+    </div>
+</body>
+</html>

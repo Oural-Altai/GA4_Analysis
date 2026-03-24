@@ -1,0 +1,4 @@
+promo_segment,nb_sessions,nb_added_cart,nb_purchased,conversion_rate_pct,total_revenue,avg_order_value,promo_ctr_pct
+promo_clicked,8499,1297,306,3.6,21558.0,70.45,100.18
+promo_seen_only,119963,10553,3921,3.27,293592.0,74.88,0.0
+no_promo,231667,3338,621,0.27,47015.0,75.71,

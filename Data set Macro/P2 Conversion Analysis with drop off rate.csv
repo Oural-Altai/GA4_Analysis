@@ -1,0 +1,2 @@
+sessions_total,s1_session,s2_view_item,s3_cart,s4_checkout,s5_shipping,s6_payment,s7_purchase,drop_session_to_view,drop_view_to_cart,drop_cart_to_checkout,drop_checkout_to_shipping,drop_shipping_to_payment,drop_payment_to_purchase
+360129,354857,77020,15188,11106,11105,6815,4848,78.3,80.3,26.9,0.0,38.6,28.9

@@ -1,0 +1,151 @@
+# Project Configuration
+# Google Merchandise Store Analysis
+# All parameters used across the analysis pipeline
+
+project:
+  name: "Google Merchandise Store Analysis"
+  author: "Eliott Barat-Chabeauti"
+  version: "1.0.0"
+  created: "2025-03"
+
+data_source:
+  project_id: "bigquery-public-data"
+  dataset: "ga4_obfuscated_sample_ecommerce"
+  table_pattern: "events_*"
+  
+date_range:
+  start_date: "2020-11-01"
+  end_date: "2021-01-31"
+  reference_date: "2021-01-31"  # Used for recency calculations
+
+currency:
+  source: "USD"
+  display: "EUR"
+  exchange_rate: 0.85  # Approximate USD to EUR
+
+funnel_steps:
+  session_start:
+    order: 1
+    event_name: "session_start"
+    label: "Session Start"
+  view_item:
+    order: 2
+    event_name: "view_item"
+    label: "View Item"
+  add_to_cart:
+    order: 3
+    event_name: "add_to_cart"
+    label: "Add to Cart"
+  begin_checkout:
+    order: 4
+    event_name: "begin_checkout"
+    label: "Checkout"
+  add_shipping_info:
+    order: 5
+    event_name: "add_shipping_info"
+    label: "Shipping"
+    excluded_from_friction: true  # Auto-fired event
+  add_payment_info:
+    order: 6
+    event_name: "add_payment_info"
+    label: "Payment"
+  purchase:
+    order: 7
+    event_name: "purchase"
+    label: "Purchase"
+
+path_classification:
+  search:
+    trigger_event: "view_search_results"
+    priority: 1
+  promo_engaged:
+    trigger_event: "select_promotion"
+    priority: 2
+  promo_exposed:
+    trigger_event: "view_promotion"
+    priority: 3
+  direct:
+    trigger_event: null
+    priority: 4  # Default fallback
+
+rfm_scoring:
+  recency:
+    metric: "days_since_last_visit"
+    bins: 5
+    labels: [5, 4, 3, 2, 1]  # Higher score = more recent
+  frequency:
+    metric: "purchase_count"
+    bins: 5
+    labels: [1, 2, 3, 4, 5]  # Higher score = more purchases
+  monetary:
+    metric: "total_revenue"
+    bins: 5
+    labels: [1, 2, 3, 4, 5]  # Higher score = more revenue
+
+rfm_segments:
+  champions:
+    r_range: [4, 5]
+    f_range: [4, 5]
+    m_range: [4, 5]
+  loyal_customers:
+    r_range: [3, 5]
+    f_range: [3, 5]
+    m_range: [3, 5]
+  at_risk_customers:
+    r_range: [1, 2]
+    f_range: [3, 5]
+    m_range: [3, 5]
+  need_attention:
+    r_range: [2, 4]
+    f_range: [1, 2]
+    m_range: [1, 3]
+  recent_users:
+    r_range: [4, 5]
+    f_range: [1, 1]
+    m_range: [1, 2]
+  lost_inactive:
+    r_range: [1, 2]
+    f_range: [1, 1]
+    m_range: [1, 1]
+
+clustering:
+  algorithm: "kmeans"
+  optimal_k: 4  # Business-driven override
+  features:
+    - "recency"
+    - "frequency"
+    - "monetary"
+  scaling: "standard"  # StandardScaler
+  random_state: 42
+  n_init: 10
+
+retention_analysis:
+  cohort_granularity: "week"
+  max_periods: 12
+  metric: "active_users"
+
+visualization:
+  color_palette:
+    primary: "#4285F4"    # Google Blue
+    secondary: "#34A853"  # Google Green
+    warning: "#FBBC04"    # Google Yellow
+    danger: "#EA4335"     # Google Red
+    neutral: "#5F6368"    # Google Gray
+  
+  drop_off_thresholds:
+    critical: 40  # Red
+    medium: 10    # Orange
+    low: 0        # Blue
+
+  figure_dpi: 150
+  figure_format: "png"
+
+thresholds:
+  conversion_benchmark: 2.5  # Industry average e-commerce conversion rate
+  retention_healthy: 10     # Healthy W+4 retention percentage
+  cart_abandonment_avg: 70  # Industry average cart abandonment
+
+export:
+  output_directory: "outputs"
+  figures_subdirectory: "figures"
+  data_subdirectory: "processed"
