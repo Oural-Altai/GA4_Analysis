@@ -72,16 +72,17 @@ The combined revenue opportunity ranges from €650K to €1.4M per year dependi
 
 ```
 google-merchandise-analysis/
-    data/
-        raw/                     Original BigQuery exports
-        processed/               Cleaned datasets for analysis
+    Data set Macro/
+        P1
+        P2
+        P3
+        P4
     notebooks/
-        macro_analysis.ipynb     Primary analysis notebook
+        GA4 Analysis.ipynb    Primary analysis notebook
     outputs/
-        figures/                 Visualization exports (PNG)
-        presentation.pptx        Final slide deck
+        presentation.pptx        Final slide deck given to potential clients
+        executive summary        Brief analysis and main take away for non technical
     docs/
-        speaker_notes.md         Presentation talking points
     README.md                    Project documentation
     requirements.txt             Python dependencies
 ```
