@@ -73,10 +73,10 @@ The combined revenue opportunity ranges from €650K to €1.4M per year dependi
 ```
 google-merchandise-analysis/
     Data set Macro/
-        P1
-        P2
-        P3
-        P4
+        P1 promo efficiency
+        P2 Conversion Analysis
+        P3 Research Nav & Discovery
+        P4 Drop off rate
     notebooks/
         GA4 Analysis.ipynb    Primary analysis notebook
     outputs/
